@@ -1,8 +1,11 @@
 import express from 'express';
 import routerApi from './routes/index.js';
+import bodyParser from 'body-parser';
 
 const app = express();
 const port = 3001;
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.send('Hola mundo');
