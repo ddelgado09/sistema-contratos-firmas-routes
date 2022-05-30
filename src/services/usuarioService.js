@@ -25,7 +25,7 @@ class UsuarioService {
         }
     }
 
-    create(data) {
+    async create(data) {
         const { nombres, email, cliente } = data;
         const newUsuario = {
             id: faker.datatype.uuid(),
@@ -39,15 +39,15 @@ class UsuarioService {
         return newUsuario;
     }
 
-    find() {
+    async find() {
         return this.usuarios;
     }
 
-    findOne(id) {
+    async findOne(id) {
         return this.usuarios.find(item => item.id === id);
     }
 
-    update(id, changes) {
+     async update(id, changes) {
         const index = this.usuarios.findIndex(item => item.id === id);
 
         if (index === -1) {
@@ -63,7 +63,7 @@ class UsuarioService {
         return this.usuarios[index];
     }
 
-    delete(id) {
+    async delete(id) {
         const index = this.usuarios.findIndex(item => item.id === id);
 
         if (index === -1) {
