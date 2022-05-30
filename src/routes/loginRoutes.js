@@ -1,5 +1,4 @@
 import { Router } from "express";
-import UsuarioModel from './../models/usuarioModel.js';
 import Hashing from "../utils/hashing.js";
 
 const router = Router();

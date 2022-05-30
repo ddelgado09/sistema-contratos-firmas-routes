@@ -20,7 +20,12 @@
   },
   "homepage": "https://github.com/ddelgado09/sistema-contratos-firmas-routes#readme",
   "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-runtime": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
     "@faker-js/faker": "^7.0.1",
+    "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0",
     "nodemon": "^2.0.16",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",

@@ -1,6 +1,7 @@
 import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 import { fileURLToPath } from 'url';
+import CopyPlugin from 'copy-webpack-plugin';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -21,5 +22,26 @@ export default {
         extensions: [
             '.js'
         ]
-    }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.m?.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    },
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src', 'assets/logs'),
+                    to: 'assets/logs'
+                }
+            ]
+        })
+    ]
 }
