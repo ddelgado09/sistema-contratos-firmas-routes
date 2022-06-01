@@ -14,6 +14,9 @@ function routerApi(app) {
 
     // Rutas login
     router.use('/login', loginRouter);
+
+    // Rutas contratos gestionados
+    router.use('/contratos_gestionados', contratosGestionadosRouter);
     
     app.use('/api/v1', router);
 }

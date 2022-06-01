@@ -1,5 +1,6 @@
 import ConnDb from '../models/conn/dbConn.js';
 import { faker } from '@faker-js/faker';
+import boom from '@hapi/boom';
 
 class UsuarioService {
     constructor() {
@@ -44,14 +45,18 @@ class UsuarioService {
     }
 
     async findOne(id) {
-        return this.usuarios.find(item => item.id === id);
+        const usuario = this.usuarios.find(item => item.id === id);
+
+        if (!usuario) throw boom.notFound('No se encontró el usuario');
+
+        return usuario;
     }
 
-     async update(id, changes) {
+    async update(id, changes) {
         const index = this.usuarios.findIndex(item => item.id === id);
 
         if (index === -1) {
-            throw new Error('No se encontró el usuario');
+            throw boom.notFound('No se encontró el usuario');
         }
 
         const usuario = this.usuarios[index];
@@ -63,35 +68,21 @@ class UsuarioService {
         return this.usuarios[index];
     }
 
+    /**
+     * @
+     * 
+     * @param {string} id Id del usuario
+     * @returns El id del usuario que se borro
+     */
     async delete(id) {
         const index = this.usuarios.findIndex(item => item.id === id);
 
         if (index === -1) {
-            throw new Error('No se encontró el usuario');
+            throw boom.notFound('No se encontró el usuario');
         }
 
         this.usuarios.splice(index, 1);
         return { id };
-    }
-
-    set id(id) {
-        this._id = id;
-    }
-
-    get nombres() {
-        return this._nombres;
-    }
- 
-    set nombres(nombres) {
-        this._nombres = nombres;
-    }
-
-    get email() {
-        return this._email;
-    }
-
-    set email(email) {
-        this._email = email;
     }
 }
 
